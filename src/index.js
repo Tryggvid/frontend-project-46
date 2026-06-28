@@ -1,6 +1,12 @@
 import { readFile } from './parsers.js';
 import buildAST from './buildAST.js';
 import stylish from './formatters/stylish.js';
+import plain from './formatters/plain.js';
+
+const formatters = {
+  stylish,
+  plain,
+};
 
 export default function genDiff(filepath1, filepath2, format = 'stylish') {
   const data1 = readFile(filepath1);
@@ -8,5 +14,5 @@ export default function genDiff(filepath1, filepath2, format = 'stylish') {
   
   const ast = buildAST(data1, data2);
   
-  return stylish(ast);
+  return formatters[format](ast);
 }

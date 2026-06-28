@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function buildAST(data1, data2) {
+const buildAST = (data1, data2) => {
   const keys = _.union(Object.keys(data1), Object.keys(data2));
   const sortedKeys = _.sortBy(keys);
   
@@ -18,6 +18,14 @@ export default function buildAST(data1, data2) {
       return { key, type: 'removed', value: value1 };
     }
     
+    if (_.isObject(value1) && _.isObject(value2)) {
+      return {
+        key,
+        type: 'nested',
+        children: buildAST(value1, value2),
+      };
+    }
+    
     if (value1 === value2) {
       return { key, type: 'unchanged', value: value1 };
     }
@@ -29,4 +37,6 @@ export default function buildAST(data1, data2) {
       newValue: value2,
     };
   });
-}
+};
+
+export default buildAST;
