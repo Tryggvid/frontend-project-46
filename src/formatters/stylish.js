@@ -32,7 +32,9 @@ const stylish = (diff, depth = 0) => {
           `${indent}  + ${node.key}: ${stringify(node.newValue, depth + 1)}`,
         ].join('\n');
       case 'nested':
-        return `${indent}    ${node.key}: ${stylish(node.children, depth + 1)}`;
+        const nestedIndent = '  '.repeat(depth + 1);
+        const children = stylish(node.children, depth + 1);
+        return `${indent}    ${node.key}: ${children}`;
       default:
         throw new Error(`Unknown node type: ${node.type}`);
     }
