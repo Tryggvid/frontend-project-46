@@ -26,7 +26,6 @@ const stylish = (diff, depth = 0) => {
       }
       case 'added': {
         const value = stringify(node.value, depth + 1);
-        // Для вложенных объектов используем дополнительный отступ
         const prefix = depth > 0 ? '  '.repeat(depth + 1) : indent;
         return `${prefix}  + ${key}: ${value}`;
       }
