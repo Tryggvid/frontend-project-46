@@ -35,8 +35,11 @@ const isSafePath = (filepath) => {
 };
 
 export const readFile = (filepath) => {
-  const fullPath = isSafePath(filepath);
-  const data = fs.readFileSync(fullPath, 'utf-8');
+  // Сначала проверяем формат
   const parser = getParser(filepath);
+  // Потом проверяем безопасность пути
+  const fullPath = isSafePath(filepath);
+  // Потом читаем файл
+  const data = fs.readFileSync(fullPath, 'utf-8');
   return parser(data);
 };
