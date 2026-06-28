@@ -1,7 +1,14 @@
 import _ from 'lodash';
 
 const stringify = (value, depth) => {
+  if (value === null || value === undefined) {
+    return 'null';
+  }
+  
   if (!_.isObject(value)) {
+    if (value === '') {
+      return '';
+    }
     return String(value);
   }
   
