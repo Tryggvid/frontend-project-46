@@ -5,10 +5,11 @@ const stringify = (value, depth) => {
     return 'null';
   }
   
+  if (typeof value === 'string' && value === '') {
+    return ' '; // Возвращаем пробел вместо пустой строки
+  }
+  
   if (!_.isObject(value)) {
-    if (value === '') {
-      return '';
-    }
     return String(value);
   }
   

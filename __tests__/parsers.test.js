@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from '@jest/globals';
 import { readFile } from '../src/parsers.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +10,7 @@ describe('readFile', () => {
   test('should read and parse JSON file', () => {
     const filepath = path.join(__dirname, '..', 'file1.json');
     const result = readFile(filepath);
-    
+
     expect(result).toEqual({
       host: "hexlet.io",
       timeout: 50,
