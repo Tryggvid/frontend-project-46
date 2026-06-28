@@ -35,7 +35,7 @@ const isSafePath = (filepath) => {
 };
 
 export const readFile = (filepath) => {
-  // Сначала проверяем формат
+  // Сначала проверяем формат файла (это выбросит ошибку для .txt)
   const parser = getParser(filepath);
   // Потом проверяем безопасность пути
   const fullPath = isSafePath(filepath);
