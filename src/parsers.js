@@ -7,7 +7,7 @@ const parseYAML = (data) => yaml.load(data);
 
 const getParser = (filepath) => {
   const extension = path.extname(filepath).slice(1).toLowerCase();
-  
+
   switch (extension) {
     case 'json':
       return parseJSON;
@@ -19,16 +19,26 @@ const getParser = (filepath) => {
   }
 };
 
+// Безопасная проверка пути
+const validatePath = (filepath) => {
+  const resolved = path.resolve(process.cwd(), filepath);
+  // Проверяем, что путь не выходит за пределы рабочей директории
+  if (!resolved.startsWith(process.cwd())) {
+    throw new Error('Access denied: path is outside the project directory');
+  }
+  // Проверяем опасные символы
+  const dangerous = ['..', '~', '$', '`', ';', '|', '&', '>', '<', '(', ')', '[', ']', '{', '}'];
+  for (const char of dangerous) {
+    if (filepath.includes(char)) {
+      throw new Error(`Access denied: invalid character "${char}" in path`);
+    }
+  }
+  return resolved;
+};
+
 export const readFile = (filepath) => {
-  // Сначала проверяем формат файла
   const parser = getParser(filepath);
-  
-  // Потом строим полный путь
-  const fullPath = path.resolve(process.cwd(), filepath);
-  
-  // Потом читаем файл
+  const fullPath = validatePath(filepath);
   const data = fs.readFileSync(fullPath, 'utf-8');
-  
-  // Парсим данные
   return parser(data);
 };
