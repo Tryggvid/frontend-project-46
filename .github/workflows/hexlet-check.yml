@@ -1,27 +1,15 @@
-# Hexlet tests and linter runner
 name: hexlet-check
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install dependencies
-        run: |
-          npm install
-      - name: Run linter
-        run: |
-          make lint
-      - name: Run tests
-        run: |
-          make test
+      - run: make install
+      - run: make lint
+      - run: make test
