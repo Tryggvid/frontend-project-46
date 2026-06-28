@@ -1,4 +1,4 @@
-import { describe, test, expect } from '@jest/globals';
+import { describe, test, expect } from 'vitest';
 import genDiff from '../src/index.js';
 import path from 'path';
 import { fileURLToPath } from 'url';

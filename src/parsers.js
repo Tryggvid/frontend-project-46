@@ -20,9 +20,12 @@ const getParser = (filepath) => {
 };
 
 export const readFile = (filepath) => {
+  // Сначала проверяем формат
+  const parser = getParser(filepath);
+  
+  // Потом читаем файл
   const fullPath = path.resolve(process.cwd(), filepath);
   const data = fs.readFileSync(fullPath, 'utf-8');
-  const parser = getParser(filepath);
   
   return parser(data);
 };
