@@ -26,20 +26,24 @@ const stylish = (diff, depth = 0) => {
       }
       case 'added': {
         const value = stringify(node.value, depth + 1);
-        return `${indent}  + ${key}: ${value}`;
+        const prefix = depth > 0 ? '  '.repeat(depth + 1) : indent;
+        return `${prefix}  + ${key}: ${value}`;
       }
       case 'removed': {
         const value = stringify(node.value, depth + 1);
-        return `${indent}  - ${key}: ${value}`;
+        const prefix = depth > 0 ? '  '.repeat(depth + 1) : indent;
+        return `${prefix}  - ${key}: ${value}`;
       }
       case 'changed': {
         const oldValue = stringify(node.oldValue, depth + 1);
         const newValue = stringify(node.newValue, depth + 1);
-        return `${indent}  - ${key}: ${oldValue}\n${indent}  + ${key}: ${newValue}`;
+        const prefix = depth > 0 ? '  '.repeat(depth + 1) : indent;
+        return `${prefix}  - ${key}: ${oldValue}\n${prefix}  + ${key}: ${newValue}`;
       }
       case 'unchanged': {
         const value = stringify(node.value, depth + 1);
-        return `${indent}    ${key}: ${value}`;
+        const prefix = depth > 0 ? '  '.repeat(depth + 1) : indent;
+        return `${prefix}    ${key}: ${value}`;
       }
       default:
         throw new Error(`Unknown type: ${node.type}`);
