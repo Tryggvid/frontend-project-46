@@ -20,7 +20,7 @@ const getParser = (filepath) => {
 };
 
 export const readFile = (filepath) => {
-  // Сначала проверяем формат файла - это выбросит ошибку для неподдерживаемых форматов
+  // Сначала проверяем формат файла
   const parser = getParser(filepath);
   
   // Потом строим полный путь
