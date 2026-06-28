@@ -1,48 +1,27 @@
+# Hexlet tests and linter runner
 name: hexlet-check
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+      - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
-
       - name: Install dependencies
-        run: npm install
-
-      - name: Run linter
-        run: make lint || true
-
-      - name: Run tests with coverage
-        run: npm run test:coverage
-
-      - name: Debug SonarQube token
         run: |
-          echo "SONAR_TOKEN exists: ${{ secrets.SONAR_TOKEN != '' }}"
-          if [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
-            echo "SONAR_TOKEN is set"
-          else
-            echo "SONAR_TOKEN is NOT set"
-            exit 1
-          fi
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2.3.0
-        with:
-          projectBaseDir: .
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          npm install
+      - name: Run linter
+        run: |
+          make lint
+      - name: Run tests
+        run: |
+          make test
