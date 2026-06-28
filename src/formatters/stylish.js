@@ -20,11 +20,11 @@ const stylish = (diff, depth = 0) => {
     switch (node.type) {
       case 'nested': {
         const children = stylish(node.children, depth + 1);
-        // Добавляем 2 дополнительных пробела для вложенных объектов
+        // Для вложенных объектов используем 4 пробела + 2 пробела от родителя
         return `${indent}    ${key}: ${children}`;
       }
       case 'added':
-        // Для вложенных объектов добавляем дополнительный отступ
+        // Для вложенных элементов добавляем дополнительный отступ
         const addedIndent = depth > 0 ? '  '.repeat(depth + 1) : indent;
         return `${addedIndent}  + ${key}: ${stringify(node.value, depth + 1)}`;
       case 'removed':
