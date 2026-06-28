@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe('gendiff', () => {
-  test('should compare flat JSON files', () => {
+  test('should compare flat JSON files in stylish format', () => {
     const filepath1 = path.join(__dirname, '..', 'file1.json');
     const filepath2 = path.join(__dirname, '..', 'file2.json');
 
@@ -22,14 +22,13 @@ describe('gendiff', () => {
 
     expect(genDiff(filepath1, filepath2)).toBe(expected);
   });
-});
 
-describe('gendiff formatters', () => {
   test('should output plain format', () => {
     const filepath1 = path.join(__dirname, '..', 'file1.json');
     const filepath2 = path.join(__dirname, '..', 'file2.json');
     
-    const expected = `Property 'proxy' was removed
+    const expected = `Property 'follow' was removed
+Property 'proxy' was removed
 Property 'timeout' was updated. From 50 to 20
 Property 'verbose' was added with value: true`;
     
