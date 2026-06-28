@@ -4,11 +4,13 @@ const stringify = (value, depth) => {
   if (!_.isObject(value)) {
     return String(value);
   }
+  
   const indent = '  '.repeat(depth + 1);
   const lines = Object.entries(value).map(([key, val]) => {
     const formattedVal = _.isObject(val) ? stringify(val, depth + 1) : val;
     return `${indent}${key}: ${formattedVal}`;
   });
+  
   return `{\n${lines.join('\n')}\n${'  '.repeat(depth)}}`;
 };
 
@@ -18,12 +20,8 @@ const stylish = (diff, depth = 0) => {
     const key = node.key;
 
     switch (node.type) {
-      case 'nested': {
-        const children = stylish(node.children, depth + 1);
-        // Используем 2 пробела для отступа вложенных объектов, но без дополнительных пробелов
-        const nestedIndent = '  '.repeat(depth + 1);
-        return `${nestedIndent}${key}: ${children}`;
-      }
+      case 'nested':
+        return `${indent}    ${key}: ${stylish(node.children, depth + 1)}`;
       case 'added':
         return `${indent}  + ${key}: ${stringify(node.value, depth + 1)}`;
       case 'removed':
