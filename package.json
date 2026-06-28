@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "commander": "^11.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
