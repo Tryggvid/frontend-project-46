@@ -19,27 +19,16 @@ const getParser = (filepath) => {
   }
 };
 
-// Проверка, что путь безопасен
-const isSafePath = (filepath) => {
-  const resolved = path.resolve(process.cwd(), filepath);
-  // Запрещаем выход за пределы рабочей директории
-  if (!resolved.startsWith(process.cwd())) {
-    throw new Error('Access denied: path is outside the project directory');
-  }
-  // Запрещаем специальные символы
-  const dangerous = ['..', '~', '$', '`', ';', '|', '&', '>', '<'];
-  if (dangerous.some(char => filepath.includes(char))) {
-    throw new Error('Access denied: invalid characters in path');
-  }
-  return resolved;
-};
-
 export const readFile = (filepath) => {
-  // Сначала проверяем формат файла (это выбросит ошибку для .txt)
+  // Сначала проверяем формат файла - это выбросит ошибку для неподдерживаемых форматов
   const parser = getParser(filepath);
-  // Потом проверяем безопасность пути
-  const fullPath = isSafePath(filepath);
+  
+  // Потом строим полный путь
+  const fullPath = path.resolve(process.cwd(), filepath);
+  
   // Потом читаем файл
   const data = fs.readFileSync(fullPath, 'utf-8');
+  
+  // Парсим данные
   return parser(data);
 };
