@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/18</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.76% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/17</span>
+                <span class='fraction'>13/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,72 +102,72 @@
 <a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import _ from 'lodash';
 &nbsp;
-const stringify = <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (_.isObject(value)) {</span>
+const stringify = (value) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (_.isObject(value)) {
 <span class="cstat-no" title="statement not covered" >    return '[complex value]';</span>
   }
-<span class="cstat-no" title="statement not covered" >  if (typeof value === 'string') {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof value === 'string') {
 <span class="cstat-no" title="statement not covered" >    return `'${value}'`;</span>
   }
-<span class="cstat-no" title="statement not covered" >  return String(value);</span>
+  return String(value);
 };
 &nbsp;
-const plain = <span class="fstat-no" title="function not covered" >(d</span>iff, path = <span class="branch-0 cbranch-no" title="branch not covered" >'')</span> =&gt; {
-  const lines = <span class="cstat-no" title="statement not covered" >diff.map(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; {</span>
-    const fullPath = <span class="cstat-no" title="statement not covered" >path ? `${path}.${node.key}` : node.key;</span>
+const plain = (diff, path = '') =&gt; {
+  const lines = diff.map((node) =&gt; {
+    const fullPath = path ? <span class="branch-0 cbranch-no" title="branch not covered" >`${path}.${node.key}` </span>: node.key;
     
-<span class="cstat-no" title="statement not covered" >    switch (node.type) {</span>
+    switch (node.type) {
       case 'removed':
-<span class="cstat-no" title="statement not covered" >        return `Property '${fullPath}' was removed`;</span>
+        return `Property '${fullPath}' was removed`;
       case 'added':
-<span class="cstat-no" title="statement not covered" >        return `Property '${fullPath}' was added with value: ${stringify(node.value)}`;</span>
+        return `Property '${fullPath}' was added with value: ${stringify(node.value)}`;
       case 'changed':
-<span class="cstat-no" title="statement not covered" >        return `Property '${fullPath}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`;</span>
-      case 'nested':
+        return `Property '${fullPath}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`;
+<span class="branch-3 cbranch-no" title="branch not covered" >      case 'nested':</span>
 <span class="cstat-no" title="statement not covered" >        return plain(node.children, fullPath);</span>
       case 'unchanged':
-<span class="cstat-no" title="statement not covered" >        return null;</span>
-      default:
+        return null;
+<span class="branch-5 cbranch-no" title="branch not covered" >      default:</span>
 <span class="cstat-no" title="statement not covered" >        throw new Error(`Unknown node type: ${node.type}`);</span>
     }
   });
   
-<span class="cstat-no" title="statement not covered" >  return lines.filter(<span class="fstat-no" title="function not covered" >li</span>ne =&gt; <span class="cstat-no" title="statement not covered" >line !== null)</span>.join('\n');</span>
+  return lines.filter(line =&gt; line !== null).join('\n');
 };
 &nbsp;
 export default plain;
@@ -178,7 +178,7 @@ export default plain;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-28T18:45:34.010Z
+                at 2026-06-28T19:22:44.850Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
