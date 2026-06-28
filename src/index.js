@@ -1,30 +1,12 @@
-import _ from 'lodash'
-import { parseFile } from './parsers.js'
+import { readFile } from './parsers.js';
+import buildAST from './buildAST.js';
+import stylish from './formatters/stylish.js';
 
-const genDiff = (filepath1, filepath2) => {
-  const data1 = parseFile(filepath1)
-  const data2 = parseFile(filepath2)
-
-  const allKeys = _.union(Object.keys(data1), Object.keys(data2))
-  const sortedKeys = _.sortBy(allKeys)
-
-  const result = sortedKeys.map((key) => {
-    const value1 = data1[key]
-    const value2 = data2[key]
-
-    if (!Object.hasOwn(data1, key)) {
-      return `  + ${key}: ${value2}`
-    }
-    if (!Object.hasOwn(data2, key)) {
-      return `  - ${key}: ${value1}`
-    }
-    if (value1 === value2) {
-      return `    ${key}: ${value1}`
-    }
-    return `  - ${key}: ${value1}\n  + ${key}: ${value2}`
-  })
-
-  return `{\n${result.join('\n')}\n}`
+export default function genDiff(filepath1, filepath2, format = 'stylish') {
+  const data1 = readFile(filepath1);
+  const data2 = readFile(filepath2);
+  
+  const ast = buildAST(data1, data2);
+  
+  return stylish(ast);
 }
-
-export default genDiff
