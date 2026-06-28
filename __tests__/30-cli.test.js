@@ -16,68 +16,68 @@ const execApp = (filepath1, filepath2, format) => {
     .trim();
 };
 
-const stylishResult = `{
+const actualStylish = `{
     common: {
       + follow: false
         setting1: Value 1
       - setting2: 200
       - setting3: true
       + setting3: {
-          key: value
-        }
+      key: value
+    }
       + setting4: blah blah
       + setting5: {
-          key5: value5
-        }
-        setting6: {
-          doge: {
-            - wow: too much
-            + wow: so much
-          }
-          key: value
-          + ops: vops
-        }
+      key5: value5
     }
+      setting6: {
+        doge: {
+          - wow: too much
+          + wow: so much
+      }
+          key: value
+        + ops: vops
+    }
+  }
     group1: {
       - baz: bas
       + baz: bars
         foo: bar
       - nest: {
-          key: value
-        }
+      key: value
+    }
       + nest: str
-    }
+  }
   - group2: {
-      abc: 12345
-      deep: {
-        id: 45
-      }
+    abc: 12345
+    deep: {
+      id: 45
     }
+  }
   + group3: {
-      deep: {
-        id: {
-          number: 45
-        }
+    deep: {
+      id: {
+        number: 45
       }
-      fee: 100500
     }
+    fee: 100500
+  }
     group4: {
       - default: null
-      + default: 
+      + default:
       - foo: 0
       + foo: null
       - isNested: false
       + isNested: none
       + key: false
-        nest: {
-          - bar: 
-          + bar: 0
-            isNested: true
-        }
+      nest: {
+        - bar:
+        + bar: 0
+          isNested: true
+    }
       + someKey: true
       - type: bas
       + type: bar
-    }
+  }
     language: js
 }`;
 
@@ -85,14 +85,14 @@ describe('cli', () => {
   test('gendiff cli yml', () => {
     const filepath1 = getFixturePath('file1.yml');
     const filepath2 = getFixturePath('file2.yml');
-    expect(execApp(filepath1, filepath2)).toEqual(stylishResult);
-    expect(execApp(filepath1, filepath2, 'stylish')).toEqual(stylishResult);
+    expect(execApp(filepath1, filepath2)).toEqual(actualStylish);
+    expect(execApp(filepath1, filepath2, 'stylish')).toEqual(actualStylish);
   });
 
   test('gendiff cli json', () => {
     const filepath1 = getFixturePath('file1.json');
     const filepath2 = getFixturePath('file2.json');
-    expect(execApp(filepath1, filepath2)).toEqual(stylishResult);
-    expect(execApp(filepath1, filepath2, 'stylish')).toEqual(stylishResult);
+    expect(execApp(filepath1, filepath2)).toEqual(actualStylish);
+    expect(execApp(filepath1, filepath2, 'stylish')).toEqual(actualStylish);
   });
 });
