@@ -1,0 +1,6 @@
+{
+  "threshold": 0,
+  "reporters": ["html", "console"],
+  "ignore": ["**/__tests__/**", "**/__fixtures__/**", "**/node_modules/**"],
+  "format": ["javascript", "js"]
+}

@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -27,11 +29,12 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:coverage
 
-      - name: Display coverage files
-        run: ls -la coverage/ || echo "No coverage directory"
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.qualitygate.timeout=600
