@@ -22,24 +22,30 @@ const stylish = (diff, depth = 0) => {
     switch (node.type) {
       case 'nested': {
         const children = stylish(node.children, depth + 1);
+        // Для вложенных объектов используем 4 пробела + 2 пробела от родителя
         return `${indent}    ${key}: ${children}`;
       }
       case 'added': {
+        // Для элементов внутри вложенных объектов добавляем дополнительный отступ
+        const addedIndent = depth > 0 ? '  '.repeat(depth + 1) : indent;
         const value = stringify(node.value, depth + 1);
-        return `${indent}  + ${key}: ${value}`;
+        return `${addedIndent}  + ${key}: ${value}`;
       }
       case 'removed': {
+        const removedIndent = depth > 0 ? '  '.repeat(depth + 1) : indent;
         const value = stringify(node.value, depth + 1);
-        return `${indent}  - ${key}: ${value}`;
+        return `${removedIndent}  - ${key}: ${value}`;
       }
       case 'changed': {
+        const changedIndent = depth > 0 ? '  '.repeat(depth + 1) : indent;
         const oldValue = stringify(node.oldValue, depth + 1);
         const newValue = stringify(node.newValue, depth + 1);
-        return `${indent}  - ${key}: ${oldValue}\n${indent}  + ${key}: ${newValue}`;
+        return `${changedIndent}  - ${key}: ${oldValue}\n${changedIndent}  + ${key}: ${newValue}`;
       }
       case 'unchanged': {
+        const unchangedIndent = depth > 0 ? '  '.repeat(depth + 1) : indent;
         const value = stringify(node.value, depth + 1);
-        return `${indent}    ${key}: ${value}`;
+        return `${unchangedIndent}    ${key}: ${value}`;
       }
       default:
         throw new Error(`Unknown type: ${node.type}`);
